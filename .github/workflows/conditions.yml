@@ -1,0 +1,24 @@
+
+name: Conditions Practice
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Successful step
+        run: echo "Step 1 passed"
+
+      - name: Main branch check
+        if: github.ref == 'refs/heads/main'
+        run: echo "Running on main"
+
+      - name: Simulate failure
+        id: test
+        run: exit 1
+
+      - name: Failure notification
+        if: failure()
+        run: echo "A previous step failed"
