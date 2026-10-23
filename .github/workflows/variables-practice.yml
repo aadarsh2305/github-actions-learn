@@ -1,0 +1,26 @@
+
+name: Variables Practice
+
+on:
+  workflow_dispatch:
+
+env:
+  APP_NAME: actions-mastery
+
+jobs:
+  show-config:
+    runs-on: ubuntu-latest
+    env:
+      APP_ENV: development
+
+    steps:
+      - name: Show application
+        run: echo "Application is $APP_NAME"
+
+      - name: Show environment
+        run: echo "Environment is $APP_ENV"
+
+      - name: Override environment
+        env:
+          APP_ENV: testing
+        run: echo "Step environment is $APP_ENV"
