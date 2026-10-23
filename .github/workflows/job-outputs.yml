@@ -1,0 +1,24 @@
+
+name: Job Outputs Practice
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.config.outputs.environment }}
+    steps:
+      - name: Set deployment environment
+        id: config
+        run: echo "environment=staging" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read environment
+        env:
+          TARGET_ENV: ${{ needs.prepare.outputs.environment }}
+        run: echo "Target environment is $TARGET_ENV"
