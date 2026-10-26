@@ -28,7 +28,7 @@ jobs:
       - name: Show Git version
         run: git --version
       
-       - name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Print greeting
