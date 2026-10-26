@@ -1,0 +1,31 @@
+
+name: Matrix and Concurrency Practice
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        task: [lint, test, package]
+
+    steps:
+      - name: Show current task
+        env:
+          TASK: ${{ matrix.task }}
+        run: |
+          echo "Task: $TASK"
+          echo "Runner OS: $RUNNER_OS"
