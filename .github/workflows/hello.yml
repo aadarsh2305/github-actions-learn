@@ -28,6 +28,12 @@ jobs:
       - name: Show Git version
         run: git --version
       
+       - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print greeting
+        run: echo "Hello from GitHub Actions!"
+
       - name: Run greeting action
         uses: ./.github/actions/hello
         with:
