@@ -27,3 +27,8 @@ jobs:
 
       - name: Show Git version
         run: git --version
+      
+      - name: Run greeting action
+        uses: ./.github/actions/hello
+        with:
+          app_name: github-actions-mastery

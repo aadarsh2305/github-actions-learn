@@ -1,0 +1,11 @@
+
+name: Call Reusable Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-checks:
+    uses: ./.github/workflows/reusable-checks.yml
+    with:
+      app_name: "github-actions-mastery"
